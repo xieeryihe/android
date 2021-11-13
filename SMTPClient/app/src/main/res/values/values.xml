@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="font_size_huge">24sp</dimen>
+    <dimen name="font_size_big">20sp</dimen>
+    <dimen name="font_size_middle_big">18sp</dimen>
+    <dimen name="font_size_middle">16sp</dimen>
+    <dimen name="font_size_small">12sp</dimen>
+    <dimen name="line_height_xxxhigh">70dp</dimen>
+    <dimen name="line_height_xxhigh">60dp</dimen>
+    <dimen name="line_height_xhigh">50dp</dimen>
+    <dimen name="line_height_high">40dp</dimen>
+    <dimen name="line_height_middle">30dp</dimen>
+    <dimen name="line_height_small">20dp</dimen>
+
+</resources>

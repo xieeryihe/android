@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--实现选中填充颜色，未选中则描边的效果-->
+    <item android:state_checked="true">
+        <shape>
+            <solid android:color="#97F030"/>
+            <corners android:radius="10dp"/>
+        </shape>
+    </item>
+    <item android:state_checked="false">
+        <shape>
+            <stroke android:width="2dp"
+                android:color="#97F030"/>
+            <corners android:radius="10dp"/>
+        </shape>
+
+    </item>
+</selector>

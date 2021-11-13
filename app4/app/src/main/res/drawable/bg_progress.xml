@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-rotate xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/loading_arrow"
+    android:pivotX="50%"
+    android:pivotY="50%">
+    <!--pivot表示旋转中心/基准的位置，xy是横纵坐标-->
+
+</animated-rotate>

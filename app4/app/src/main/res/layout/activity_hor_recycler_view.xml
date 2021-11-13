@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_hor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <!--可以给上面的RecyclerView标签添加background属性来设置颜色，
+    最后设置的相当于是竖线/背景的颜色，因为文本（layout_hor_item.xml）相当于是作为一个画布画上去的-->
+
+</LinearLayout>

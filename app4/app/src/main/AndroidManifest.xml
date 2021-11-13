@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.myapplication1">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.DayNight"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".ui.ObjectAnimActivity"></activity>
+        <activity android:name=".broadcast.BroadActivity2" />
+        <activity android:name=".broadcast.BroadActivity1" />
+        <activity android:name=".data.ExternalFileActivity" />
+        <activity android:name=".data.FileActivity" />
+        <activity android:name=".data.SharedPreferencesActivity" />
+        <activity android:name=".data.DataStorageActivity" />
+        <activity android:name=".event.HandlerActivity" />
+        <activity android:name=".event.CallbackActivity" />
+        <activity android:name=".event.EventActivity" />
+        <activity android:name=".event.ListenerActivity" />
+        <activity android:name=".activity_fragment.fragment.ContainerActivity" />
+        <activity android:name=".activity_fragment.ActFraActivity" />
+        <activity
+            android:name=".activity_fragment.jump.BActivity"
+            android:label="B_page">
+            <intent-filter>
+                <action android:name="android.intent.action.JUMP" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <!-- MAIN中的LAUNCHER是默认启动的页面，这里设置默认即可 -->
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity_fragment.jump.AActivity"
+            android:label="A_page" />
+        <activity android:name=".ui.PopupWindowActivity" />
+        <activity android:name=".ui.CustomDialogActivity" />
+        <activity android:name=".ui.ProgressActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:label="Home"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.DialogActivity" />
+        <activity android:name=".ui.ToastActivity" />
+        <activity android:name=".ui.WebViewActivity" />
+        <activity android:name=".ui.recyclerview.PuRecyclerViewActivity" />
+        <activity android:name=".ui.recyclerview.GridRecyclerViewActivity" />
+        <activity android:name=".ui.recyclerview.HorRecyclerViewActivity" />
+        <activity android:name=".ui.recyclerview.LinerRecyclerViewActivity" />
+        <activity android:name=".ui.recyclerview.RecyclerViewActivity" />
+        <activity android:name=".ui.ImageViewActivity" />
+        <activity android:name=".ui.CheckBoxActivity" />
+        <activity android:name=".ui.RadioButtonActivity" />
+        <activity android:name=".ui.EditTextActivity" />
+        <activity android:name=".ui.ButtonActivity" />
+        <activity android:name=".ui.TextViewActivity" />
+        <activity android:name=".ui.UIActivity" />
+        <activity android:name=".activity_fragment.LifeCycleActivity" />
+    </application>
+
+</manifest>

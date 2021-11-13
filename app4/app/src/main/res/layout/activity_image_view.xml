@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp">
+
+    <ImageView
+        android:id="@+id/iv_1"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:background="#eeddee"
+        android:src="@drawable/juan_si_liang"
+        android:scaleType="fitCenter"/>
+    <!--fitCenter是保持宽高缩放，centerCrop是保持宽高裁剪缩放-->
+
+    <ImageView
+        android:id="@+id/iv_2"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:background="#eeddee"
+        android:scaleType="fitCenter"
+        android:layout_below="@id/iv_1"
+        android:layout_marginTop="20dp"/>
+</RelativeLayout>

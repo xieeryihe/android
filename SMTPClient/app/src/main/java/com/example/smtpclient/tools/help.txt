@@ -1,0 +1,22 @@
+对于用户的信息存储，基本思路是
+用User.json存储用户和密码，用字典：{u1:[p11,p12],u2:[p21,p22],... }//注意，授权码可以不止一个
+对于单个用户的发过的邮件，用该用户的 <用户名>.json存储，用户名为QQ号，唯一。
+---
+
+然后对于登录选项，必须要记录在库的用户才行
+对于注册，写一个半测试client的代码，如果能收到smtp的反馈信息，就说明这个号是对的。
+
+我的两个授权码：
+fjbzxoivfccxdjbc
+ynzbhgcskygedjbb
+
+653670584@qq.com
+
+
+当初Info是这么初始化的
+Info.gPathname = getFilesDir().getAbsolutePath();
+Info.gJsonFile = new File(Info.gPathname ,"/"+Info.gUserJsonFileName);
+现在要在files目录下创建该用户的专属目录——目录名就叫QQ号，然后在该目录下创建邮件信息
+
+一句话获取QQ号
+String QQaccount = Info.gUsername.substring(0,Info.gUsername.indexOf('@'));//获取QQ号

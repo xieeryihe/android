@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:textSize="30sp"
+        android:text="写邮件"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp">
+        <Button
+            android:id="@+id/cancel_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/background_white"
+            android:textSize="26sp"
+            android:layout_marginStart="10dp"
+            android:text="取消"
+            android:layout_alignParentStart="true"
+            style="?android:attr/borderlessButtonStyle"/>
+        <!--上述style是为了去掉按钮阴影-->
+
+        <Button
+            android:id="@+id/send_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/background_white"
+            android:textSize="26sp"
+            android:layout_marginEnd="10dp"
+            android:text="发送"
+            android:textColor="@color/blue"
+            android:layout_gravity="end"
+            android:layout_alignParentEnd="true"
+            style="?android:attr/borderlessButtonStyle" />
+        <!--上述style是为了去掉按钮阴影-->
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/grey"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="收件人："
+                android:textSize="@dimen/font_size_middle"/>
+            <EditText
+                android:id="@+id/edittext_receiver"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/background_white"
+                android:hint="@string/space"
+                android:singleLine="true"
+                android:textSize="@dimen/font_size_middle"
+                android:inputType="text" /><!--因为可能要设置多个邮箱，所以就不限制输入类型为email了-->
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_sender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="发件人："
+                android:textSize="@dimen/font_size_middle"/>
+            <TextView
+                android:id="@+id/textview_sender"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/background_white"
+                android:hint="@string/space"
+                android:singleLine="true"
+                android:textSize="@dimen/font_size_middle" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp"
+
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="主题："
+                android:textSize="@dimen/font_size_middle"/>
+            <EditText
+                android:id="@+id/edittext_subject"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/background_white"
+                android:hint="@string/space"
+                android:singleLine="true"
+                android:textSize="@dimen/font_size_middle"
+                android:inputType="text" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/grey"/>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/edittext_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:gravity="start"
+        android:rotationX="0"
+        android:textSize="@dimen/font_size_middle"
+        android:inputType="text"
+        android:background="@color/background_white"
+        android:hint="@string/space"/>
+    <!--gravity设置为start可以让光标开始指向EditText的起始位置-->
+
+    
+</LinearLayout>

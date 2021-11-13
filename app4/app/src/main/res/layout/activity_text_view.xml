@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
+    <TextView
+        android:id="@+id/tv_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_test1"
+        android:textColor="#000000"
+        android:textSize="26sp"/>
+    <!--string的值定义在layout同级文件夹的values中，当然，也可以直接在引号中写文本内容-->
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_test1"
+        android:textColor="#000000"
+        android:textSize="26sp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_marginTop="10dp"/>
+    <!--maxLines是最大行数的意思，如果不设置为1的话，一行不够就会排列下一行，
+    ellipsize="end"表示最后位置不够写下文本了，以...代替-->
+    <TextView
+        android:id="@+id/tv_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="齿轮"
+        android:drawableRight="@drawable/gear"
+        android:drawablePadding="10dp"
+        android:textColor="#000000"
+        android:textSize="26sp"
+        android:layout_marginTop="10dp"/>
+    <!--drawable图标相当于行元素，设置padding值只会是左右padding（如果右边没有元素就没有空白）
+    该图标是通过在drawable里面new出来的，然后会自适应不同的dpi选择，只用设置drawable路径即可-->
+
+    <TextView
+        android:id="@+id/tv_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_test1"
+        android:textColor="#000000"
+        android:textSize="26sp"
+        android:layout_marginTop="10dp"/>
+    <!--想要设置中划线，要到java代码中去实现，进入本xml文件对应的java文件中设置-->
+
+</LinearLayout>

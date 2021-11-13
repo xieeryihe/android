@@ -1,0 +1,25 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="MyProgressBar">
+        <item name="android:indeterminateDrawable">
+            @drawable/bg_progress
+        </item>
+    </style>
+    <!--使用CustomDialog的style时注意在CustomDialogActivity文件中，构造新的CustomActivity时传入R.style.CustomDialog参数-->
+    <style name="CustomDialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item><!--窗口是否浮动于Activity-->
+        <!--
+        <item name="android:windowBackground">@color/colorPrimary</item>
+        上面这条属性可以取消注释看看，其实就是会话窗口的背景色，一般来讲是看不到的，但是如果设置了回话窗口圆角
+        那么原来方框被切去的四个角剩下的背景，就可以看到这个背景色了，不过一般不设置，看起来自然点。
+        -->
+    </style>
+</resources>
