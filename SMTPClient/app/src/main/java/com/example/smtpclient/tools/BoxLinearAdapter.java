@@ -16,14 +16,14 @@ import com.example.smtpclient.R;
 import com.example.smtpclient.SSLClient;
 
 import java.util.ArrayList;
-
-public class LinearAdapter extends RecyclerView.Adapter<LinearAdapter.LinearViewHolder> {
+//关于已发送箱子，草稿箱等箱子的线性适配器
+public class BoxLinearAdapter extends RecyclerView.Adapter<BoxLinearAdapter.BoxLinearViewHolder> {
     private Context mContext;
     private ArrayList<SSLClient> sslClients;
-    public LinearAdapter(Context context){//写一个本Adapter的构造函数
+    public BoxLinearAdapter(Context context){//写一个本Adapter的构造函数
         this.mContext = context;
     }
-    public LinearAdapter(Context context,ArrayList<SSLClient> sslClients){
+    public BoxLinearAdapter(Context context, ArrayList<SSLClient> sslClients){
         this.mContext = context;
         this.sslClients = sslClients;
     }
@@ -31,17 +31,20 @@ public class LinearAdapter extends RecyclerView.Adapter<LinearAdapter.LinearView
 
     @NonNull
     @Override
-    public LinearAdapter.LinearViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new LinearViewHolder(LayoutInflater.from(mContext).inflate(R.layout.layout_recycle_element,parent,false));
+    public BoxLinearViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new BoxLinearViewHolder(LayoutInflater.from(mContext).inflate(R.layout.layout_recycle_element,parent,false));
         //其中layout_linear_item就是layout文件夹下的layout_linear_item.xml文件的文件名（注意不是id），传入的是布局文件
     }
 
     @Override
-    public void onBindViewHolder(@NonNull LinearAdapter.LinearViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull BoxLinearViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.toAddress.setText(sslClients.get(position).getToAddress());
         holder.subject.setText(sslClients.get(position).getSubject());
         holder.content.setText(sslClients.get(position).getContent());
         holder.date.setText(sslClients.get(position).getDate());
+        //将单个元素的点击事件延迟到具体的实现类中
+
+        /*
         holder.itemView.setOnClickListener(new View.OnClickListener() {//给itemView设置点击事件
             @Override
             public void onClick(View view) {
@@ -58,6 +61,7 @@ public class LinearAdapter extends RecyclerView.Adapter<LinearAdapter.LinearView
                 //返回false，表示并没有完全处理完该事件，更希望其他方法继续对其进行处理。
             }
         });
+         */
     }
 
 
@@ -66,11 +70,11 @@ public class LinearAdapter extends RecyclerView.Adapter<LinearAdapter.LinearView
         return sslClients.size();
     }
 
-    class LinearViewHolder extends RecyclerView.ViewHolder {
+    public class BoxLinearViewHolder extends RecyclerView.ViewHolder {
         private LinearLayout linearLayout;
         private TextView toAddress,subject,content,date;
 
-        public LinearViewHolder(@NonNull View itemView) {
+        public BoxLinearViewHolder(@NonNull View itemView) {
             super(itemView);
             linearLayout =itemView.findViewById(R.id.recycler_element);
             toAddress = itemView.findViewById(R.id.textview_ele_toAddress);

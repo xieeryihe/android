@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="30sp"
-        android:text="已发送"
+        android:text="草稿箱"
         android:textColor="@color/black"
         android:layout_marginBottom="5dp"
         />
@@ -61,7 +61,6 @@
 
         </LinearLayout>
 
-
     </LinearLayout>
 
     <View
@@ -70,7 +69,7 @@
         android:background="@color/grey"/>
     <!--用recyclerview实现动态加载-->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_inbox"
+        android:id="@+id/recycler_sentbox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />

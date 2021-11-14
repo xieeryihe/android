@@ -12,11 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name=".InboxActivity"
+            android:name=".ViewEmailActivity"
             android:exported="false" />
         <activity
+            android:name=".DraftboxActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SentboxActivity"
+            android:exported="false"
+            android:launchMode="singleTask" />
+        <activity
             android:name=".HomeActivity"
-            android:exported="false" /> <!-- 不要上面的条 -->
+            android:exported="false"
+            android:launchMode="singleTask" /> <!-- 不要上面的条 -->
         <activity
             android:name=".LoginActivity"
             android:exported="false"

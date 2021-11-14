@@ -14,7 +14,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Base64;
 
-public class SSLClient {
+public class SSLClient implements Serializable{//实现序列化接口，以实现activity之间的信息传递
     private final String mailServer = "smtp.qq.com";
     int serverPort = 587;
 

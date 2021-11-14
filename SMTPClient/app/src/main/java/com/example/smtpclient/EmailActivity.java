@@ -1,5 +1,8 @@
 package com.example.smtpclient;
 
+import static com.example.smtpclient.MainActivity.gAuthorizationCode;
+import static com.example.smtpclient.MainActivity.gUsername;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,8 +18,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import com.example.smtpclient.tools.Info;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -58,12 +59,12 @@ public class EmailActivity extends AppCompatActivity {
 
         mBtnCancel = findViewById(R.id.cancel_btn);
         mBtnSend = findViewById(R.id.send_btn);
-        mTextSender = findViewById(R.id.textview_sender);
+        mTextSender = findViewById(R.id.textview_from);
         mEditSubject = findViewById(R.id.edittext_subject);
-        mEditReceiver = findViewById(R.id.edittext_receiver);
+        mEditReceiver = findViewById(R.id.edittext_to);
         mEditContent = findViewById(R.id.edittext_content);
 
-        mTextSender.setText(Info.gUsername);
+        mTextSender.setText(gUsername);
         mEditReceiver.setText("653670584@qq.com , 2640182777@qq.com");//暂时设置默认
 
         SSLClient sslClient = new SSLClient();
@@ -92,8 +93,8 @@ public class EmailActivity extends AppCompatActivity {
                     toast.setText("必须输入receiver！");
                 } else {
                     //设置登录拿到的信息
-                    sslClient.setUsername(Info.gUsername);
-                    sslClient.setAuthorizationCode(Info.gAuthorizationCode);
+                    sslClient.setUsername(gUsername);
+                    sslClient.setAuthorizationCode(gAuthorizationCode);
                     //设置收件人列表
                     sslClient.setToAddressList(formatAddrList(receivers));
                     //设置data段的MIME格式信息
@@ -106,7 +107,7 @@ public class EmailActivity extends AppCompatActivity {
                     try {
                         if(sslClient.runClient()){
                             toast.setText("发送成功！");
-                            saveEmail(sslClient);
+                            saveEmail(sslClient,"emailData.json");
                         }
                         else {
                             toast.setText("发送失败");
@@ -150,19 +151,11 @@ public class EmailActivity extends AppCompatActivity {
 
 
     //传入MyClient参数，保存邮件信息。其实要的是MyClient中的信息
-    private void saveEmail(SSLClient client){
-
-        /*
-        当初Info是这么初始化的
-        Info.gPathname = getFilesDir().getAbsolutePath();
-        Info.gJsonFile = new File(Info.gPathname ,"/"+Info.gUserJsonFileName);
-        现在要在files目录下创建该用户的专属目录——目录名就叫QQ号，然后在该目录下创建邮件信息
-        */
-
-        String QQaccount = Info.gUsername.substring(0,Info.gUsername.indexOf('@'));//获取QQ号
+    private void saveEmail(SSLClient client,String targetFileName){
+        //targetFileName = "emailData.json";
+        String QQaccount = gUsername.substring(0,gUsername.indexOf('@'));//获取QQ号
         String dirPath = getFilesDir() + "/"+ QQaccount;
-        String emailDataName = "emailData.json";
-        File emailJsonFile = new File(dirPath,"/" + emailDataName);
+        File emailJsonFile = new File(dirPath,"/" + targetFileName);
         char[] buffer = new char[1024];
         StringBuilder allData = new StringBuilder();
         InputStreamReader input;
@@ -196,4 +189,6 @@ public class EmailActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+
 }

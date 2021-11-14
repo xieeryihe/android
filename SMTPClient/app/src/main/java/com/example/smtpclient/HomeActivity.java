@@ -1,16 +1,18 @@
 package com.example.smtpclient;
 
+import static com.example.smtpclient.MainActivity.gSharedEditor;
+import static com.example.smtpclient.MainActivity.gUsername;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.smtpclient.tools.Info;
-
 public class HomeActivity extends AppCompatActivity {
-    private TextView mTextTitleQQ,mTextWriteEmail,mTextInbox;
+    private TextView mTextTitleQQ,mTextWriteEmail,mTextInbox,mTextLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,8 +23,9 @@ public class HomeActivity extends AppCompatActivity {
         mTextTitleQQ = findViewById(R.id.textview_title);
         mTextWriteEmail = findViewById(R.id.textview_write_email);
         mTextInbox = findViewById(R.id.textview_inbox);
+        mTextLogout = findViewById(R.id.textview_logout);
 
-        mTextTitleQQ.setText(Info.gUsername);
+        mTextTitleQQ.setText(gUsername);
         mTextWriteEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,7 +36,20 @@ public class HomeActivity extends AppCompatActivity {
         mTextInbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this,InboxActivity.class);
+                Intent intent = new Intent(HomeActivity.this, SentboxActivity.class);
+                startActivity(intent);
+            }
+        });
+        mTextLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gSharedEditor.putBoolean("if_login",false);
+                gSharedEditor.putString("username","");
+                gSharedEditor.putString("authorizationCode","");
+                gSharedEditor.apply();
+                Toast toast = Toast.makeText(HomeActivity.this,"已登出...",Toast.LENGTH_SHORT);
+                toast.show();
+                Intent intent = new Intent(HomeActivity.this,MainActivity.class);
                 startActivity(intent);
             }
         });

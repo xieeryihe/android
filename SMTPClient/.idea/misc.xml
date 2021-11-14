@@ -7,11 +7,14 @@
         <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/drawable/bg_edit_text.xml" value="0.159375" />
         <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/drawable/bg_login_btn.xml" value="0.159375" />
         <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/drawable/ic_launcher_background.xml" value="0.159375" />
-        <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/layout/activity_email.xml" value="0.1" />
+        <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/layout/activity_draftbox.xml" value="0.4" />
+        <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/layout/activity_email.xml" value="0.4" />
         <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/layout/activity_home.xml" value="0.264" />
         <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/layout/activity_inbox.xml" value="0.4" />
         <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/layout/activity_main.xml" value="0.15670289855072464" />
+        <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/layout/activity_sentbox.xml" value="0.1334853090172239" />
+        <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/layout/activity_view_email.xml" value="0.4" />
         <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/layout/ic_launcher_background.xml" value="0.14322916666666666" />
         <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/layout/layout_recycle_element.xml" value="0.2" />
         <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/layout/list_element.xml" value="0.19635416666666666" />
@@ -24,5 +27,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.4" />
+      </ProjectState>
+    </option>
   </component>
 </project>

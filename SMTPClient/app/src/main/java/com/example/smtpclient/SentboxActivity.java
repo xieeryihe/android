@@ -1,14 +1,20 @@
 package com.example.smtpclient;
 
+import static com.example.smtpclient.MainActivity.gUsername;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
-import com.example.smtpclient.tools.Info;
-import com.example.smtpclient.tools.LinearAdapter;
+import com.example.smtpclient.tools.BoxLinearAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,46 +22,33 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 
-public class InboxActivity extends AppCompatActivity {
-    private RecyclerView mRecyclerInbox;
-    private ArrayList<SSLClient> sslClients;
-    public InboxActivity(){
-        sslClients = new ArrayList<>();
+public class SentboxActivity extends AppCompatActivity {
+    private RecyclerView mRecyclerSentbox;
+    private ArrayList<SSLClient> mSSLClients;
+    public SentboxActivity(){
+        mSSLClients = new ArrayList<>();
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inbox);
+        setContentView(R.layout.activity_sentbox);
 
         setSSLClients();//先设置所有SSLClient列表，
-        /*
-        for (int i = 0 ;i<sslClients.size();i++){
-            System.out.println(sslClients.get(i).getSubject());
-        }
-
-        */
-        mRecyclerInbox = findViewById(R.id.recycler_inbox);
-
-        mRecyclerInbox.setLayoutManager(new LinearLayoutManager(InboxActivity.this));
-
+        mRecyclerSentbox = findViewById(R.id.recycler_sentbox);
+        mRecyclerSentbox.setLayoutManager(new LinearLayoutManager(SentboxActivity.this));
         //调用的setLayoutManager属性是布局管理器，传的参数是布局管理器实例，这里是线性布局管理器.
-
-        mRecyclerInbox.setAdapter(new LinearAdapter(InboxActivity.this,sslClients));
-
-
+        mRecyclerSentbox.setAdapter(new SentboxLinearAdapter(SentboxActivity.this, mSSLClients));
 
     }
     private void setSSLClients(){
         //得到所有的邮件的全部信息，到myClients数组中
-        String QQaccount = Info.gUsername.substring(0,Info.gUsername.indexOf('@'));//获取QQ号
+        String QQaccount = gUsername.substring(0,gUsername.indexOf('@'));//获取QQ号
         String dirPath = getFilesDir() + "/"+ QQaccount;
         String emailDataName = "emailData.json";
         File emailJsonFile = new File(dirPath,"/" + emailDataName);
@@ -68,7 +61,6 @@ public class InboxActivity extends AppCompatActivity {
             while((len =input.read(buffer))>0){
                 allData.append(buffer,0,len);
             }
-
 
             //System.out.println(allData.toString());
 
@@ -105,7 +97,7 @@ public class InboxActivity extends AppCompatActivity {
                 tempClient.setSubject(tempJsonObject.getString("subject"));
                 tempClient.setContent(tempJsonObject.getString("content"));
 
-                sslClients.add(tempClient);
+                mSSLClients.add(tempClient);
             }
 
         } catch (IOException | JSONException e ) {
@@ -122,5 +114,36 @@ public class InboxActivity extends AppCompatActivity {
         }
     }
 
+    //这里对适配器再继承，主要是重写每个条目的监听器逻辑
+    class SentboxLinearAdapter extends BoxLinearAdapter {
+        private Context mContext;
+        private ArrayList<SSLClient> sslClients;
+        public SentboxLinearAdapter(Context context) {
+            super(context);
+            mContext = context;//注意，这句一定要要，因为后面设置点击事件的context是这个类的mContext//下同
+        }
 
+        public SentboxLinearAdapter(Context context, ArrayList<SSLClient> sslClients) {
+            super(context, sslClients);
+            mContext = context;
+            this.sslClients = sslClients;
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull BoxLinearViewHolder holder, @SuppressLint("RecyclerView") int position) {
+            super.onBindViewHolder(holder, position);
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Toast.makeText(mContext, "click..."+position, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(SentboxActivity.this,ViewEmailActivity.class);//跳转到查看完整邮件的界面
+                    SSLClient tempSSLClient = sslClients.get(position);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("SSLClient",tempSSLClient);//Activity之间传递参数
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+            });
+        }
+    }
 }
