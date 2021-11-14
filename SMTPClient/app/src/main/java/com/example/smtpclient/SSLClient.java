@@ -23,11 +23,11 @@ public class SSLClient {
 
     private String date = "";
     private String fromAddress = "2640182777@qq.com";
-    private String toAddress = "653670584@qq.com";//我小号
+    private String toAddress = "";//这个其实不是真正的收件地址，而是收件箱里显示出来的内容
     private String subject = "Test";
     private String content = "Hello";
 
-    private ArrayList<String> toAddressList;
+    private ArrayList<String> toAddressList;//真正的收件人地址列表
 
 
     public SSLClient(){

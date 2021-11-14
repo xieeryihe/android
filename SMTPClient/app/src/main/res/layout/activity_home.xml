@@ -62,7 +62,7 @@
         android:layout_marginStart="10dp"
         android:gravity="center_vertical"
         android:textSize="@dimen/font_size_middle_big"
-        android:text="收件箱"
+        android:text="已发送"
         android:textColor="@color/black"
         android:drawablePadding="20dp"
         android:drawableStart="@drawable/mailbox" />

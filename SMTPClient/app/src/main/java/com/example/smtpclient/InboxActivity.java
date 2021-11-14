@@ -27,6 +27,9 @@ import java.util.ArrayList;
 public class InboxActivity extends AppCompatActivity {
     private RecyclerView mRecyclerInbox;
     private ArrayList<SSLClient> sslClients;
+    public InboxActivity(){
+        sslClients = new ArrayList<>();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +40,7 @@ public class InboxActivity extends AppCompatActivity {
         for (int i = 0 ;i<sslClients.size();i++){
             System.out.println(sslClients.get(i).getSubject());
         }
+
         */
         mRecyclerInbox = findViewById(R.id.recycler_inbox);
 
@@ -64,31 +68,49 @@ public class InboxActivity extends AppCompatActivity {
             while((len =input.read(buffer))>0){
                 allData.append(buffer,0,len);
             }
-            System.out.println(allData.toString());
+
+
+            //System.out.println(allData.toString());
 
             JSONObject jsonObject = new JSONObject(allData.substring(allData.indexOf("{")));   //过滤读出的utf-8前三个标签字节,从{开始读取
             Log.d("jsonObject",jsonObject.toString());
             JSONArray jsonArray = jsonObject.getJSONArray("emails");
             for (int i = 0 ;i<jsonArray.length();i++){
                 SSLClient tempClient = new SSLClient();
-                JSONObject tempJsonObject = null;
-                JSONArray tempJsonArray = null;
+                JSONObject tempJsonObject;
+                JSONArray tempJsonArray;
+                ArrayList<String> tempToList = new ArrayList<>();
+
+                String toString;//收件人的字符串
 
                 tempJsonObject = jsonArray.getJSONObject(i);
                 tempJsonArray = tempJsonObject.getJSONArray("to");//注意，收件人是一个列表
 
+                if (tempJsonObject.length()>1){
+                    for (int j = 0;j<tempJsonArray.length();j++){
+                        tempToList.add(tempJsonArray.getString(j));
+                    }
+                    toString = tempJsonArray.getString(0)+"...";
+                }else {
+                    tempToList.add(tempJsonArray.getString(0));
+                    toString = tempJsonArray.getString(0);
+                }
+                System.out.println(toString);
+
+                //System.out.println(tempToList.toString());
                 tempClient.setDate(tempJsonObject.getString("date"));
                 tempClient.setFromAddress(tempJsonObject.getString("from"));
-                //setToAddress
+                tempClient.setToAddressList(tempToList);//setToAddressList
+                tempClient.setToAddress(toString);//
                 tempClient.setSubject(tempJsonObject.getString("subject"));
                 tempClient.setContent(tempJsonObject.getString("content"));
 
-                //这里专门处理
                 sslClients.add(tempClient);
             }
 
         } catch (IOException | JSONException e ) {
-            Log.d("setSSLClients","error");
+            //Log.d("setSSLClients","error");
+            e.printStackTrace();
         } finally {
             try {
                 if (input != null) {

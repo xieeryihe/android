@@ -40,6 +40,8 @@ public class LinearAdapter extends RecyclerView.Adapter<LinearAdapter.LinearView
     public void onBindViewHolder(@NonNull LinearAdapter.LinearViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.toAddress.setText(sslClients.get(position).getToAddress());
         holder.subject.setText(sslClients.get(position).getSubject());
+        holder.content.setText(sslClients.get(position).getContent());
+        holder.date.setText(sslClients.get(position).getDate());
         holder.itemView.setOnClickListener(new View.OnClickListener() {//给itemView设置点击事件
             @Override
             public void onClick(View view) {
@@ -66,12 +68,15 @@ public class LinearAdapter extends RecyclerView.Adapter<LinearAdapter.LinearView
 
     class LinearViewHolder extends RecyclerView.ViewHolder {
         private LinearLayout linearLayout;
-        private TextView toAddress,subject;
+        private TextView toAddress,subject,content,date;
+
         public LinearViewHolder(@NonNull View itemView) {
             super(itemView);
             linearLayout =itemView.findViewById(R.id.recycler_element);
             toAddress = itemView.findViewById(R.id.textview_ele_toAddress);
             subject = itemView.findViewById(R.id.textview_ele_subject);
+            content = itemView.findViewById(R.id.textview_ele_content);
+            date = itemView.findViewById(R.id.textview_ele_date);
         }
     }
 }

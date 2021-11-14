@@ -4,6 +4,7 @@
     <dimen name="font_size_big">20sp</dimen>
     <dimen name="font_size_middle_big">18sp</dimen>
     <dimen name="font_size_middle">16sp</dimen>
+    <dimen name="font_size_middle_small">14sp</dimen>
     <dimen name="font_size_small">12sp</dimen>
     <dimen name="line_height_xxxhigh">70dp</dimen>
     <dimen name="line_height_xxhigh">60dp</dimen>

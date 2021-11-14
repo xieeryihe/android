@@ -151,9 +151,9 @@
         android:gravity="start"
         android:rotationX="0"
         android:textSize="@dimen/font_size_middle"
-        android:inputType="text"
-        android:background="@color/background_white"
-        android:hint="@string/space"/>
+        android:inputType="textMultiLine"
+        android:lineSpacingMultiplier="1.2"
+        android:background="@color/background_white"/>
     <!--gravity设置为start可以让光标开始指向EditText的起始位置-->
 
     
