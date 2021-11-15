@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class HomeActivity extends AppCompatActivity {
-    private TextView mTextTitleQQ,mTextWriteEmail,mTextInbox,mTextLogout;
+    private TextView mTextTitleQQ,mTextWriteEmail, mTextSentbox, mTextDraftbox, mTextLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +22,8 @@ public class HomeActivity extends AppCompatActivity {
 
         mTextTitleQQ = findViewById(R.id.textview_title);
         mTextWriteEmail = findViewById(R.id.textview_write_email);
-        mTextInbox = findViewById(R.id.textview_inbox);
+        mTextSentbox = findViewById(R.id.textview_sentbox);
+        mTextDraftbox = findViewById(R.id.textview_draftbox);
         mTextLogout = findViewById(R.id.textview_logout);
 
         mTextTitleQQ.setText(gUsername);
@@ -33,13 +34,22 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        mTextInbox.setOnClickListener(new View.OnClickListener() {
+        mTextSentbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomeActivity.this, SentboxActivity.class);
                 startActivity(intent);
             }
         });
+
+        mTextDraftbox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, DraftboxActivity.class);
+                startActivity(intent);
+            }
+        });
+
         mTextLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

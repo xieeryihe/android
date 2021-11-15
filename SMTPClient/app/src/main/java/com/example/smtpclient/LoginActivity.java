@@ -226,31 +226,45 @@ public class LoginActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-
         return true;
-
     }
 
     private void createEmailJsonFile(String username){
+        //创建存储已发送邮件和草稿箱的邮件
         String QQaccount = username.substring(0,username.indexOf('@'));//获取QQ号
         String dirPath = getFilesDir() + "/"+ QQaccount;
-        String emailDataName = "emailData.json";
         File dir = new File(dirPath);
-        File emailJsonFile = new File(dirPath,"/"+emailDataName);
+        File emailJsonFile = new File(dirPath,"/"+ gEmailsFileName);
+        String emailsTag = gEmailsFileName.substring(0, gEmailsFileName.indexOf('.'));
+        File draftsJsonFile = new File(dirPath,"/"+gDraftsFileName);
+        String draftsTag = gDraftsFileName.substring(0,gDraftsFileName.indexOf('.'));
+
         if(!dir.exists()){//如果没有用户目录，就创建，并初始化
-            Log.d("create email dir","dir doesn't exist , create");
             dir.mkdir();
             try {
                 Log.d("create email data","create");
                 OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(emailJsonFile), StandardCharsets.UTF_8);
                 JSONObject jsonObject=new JSONObject();//创建JSONObject对象
                 JSONArray jsonArray = new JSONArray();
-                jsonObject.put("emails",jsonArray);
+                jsonObject.put(emailsTag,jsonArray);
                 osw.write(jsonObject.toString());
                 osw.flush();
                 osw.close();
             } catch (IOException | JSONException e) {
                 Log.d("create data file","failed");
+            }
+            //-------------
+            try {
+                Log.d("create draft data","create");
+                OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(draftsJsonFile), StandardCharsets.UTF_8);
+                JSONObject jsonObject=new JSONObject();//创建JSONObject对象
+                JSONArray jsonArray = new JSONArray();
+                jsonObject.put(draftsTag,jsonArray);
+                osw.write(jsonObject.toString());
+                osw.flush();
+                osw.close();
+            } catch (IOException | JSONException e) {
+                Log.d("create draft file","failed");
             }
         }else{
             Log.d("dir exists","don't touch anything");

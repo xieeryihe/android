@@ -56,7 +56,7 @@
         android:layout_height="1dp"
         android:background="@color/grey"/>
     <TextView
-        android:id="@+id/textview_inbox"
+        android:id="@+id/textview_sentbox"
         android:layout_width="match_parent"
         android:layout_height="@dimen/line_height_xxhigh"
         android:layout_marginStart="10dp"
@@ -66,6 +66,22 @@
         android:textColor="@color/black"
         android:drawablePadding="20dp"
         android:drawableStart="@drawable/mailbox" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey"/>
+
+    <TextView
+        android:id="@+id/textview_draftbox"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height_xxhigh"
+        android:layout_marginStart="10dp"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/font_size_middle_big"
+        android:text="草稿箱"
+        android:textColor="@color/black"
+        android:drawablePadding="20dp"
+        android:drawableStart="@drawable/drafts" />
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

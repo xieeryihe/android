@@ -9,6 +9,7 @@
         android:gravity="center"
         android:layout_marginTop="20dp"
         android:textSize="30sp"
+        android:textColor="@color/black"
         android:text="写邮件"
         />
     <RelativeLayout
@@ -28,7 +29,17 @@
             android:text="取消"
             android:textSize="26sp" />
         <!--上述style是为了去掉按钮阴影-->
-
+        <Button
+            android:id="@+id/saveDraft_btn"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="10dp"
+            android:background="@color/background_white"
+            android:textColor="@color/dark_grey"
+            android:text="存草稿"
+            android:textSize="26sp" />
         <Button
             android:id="@+id/send_btn"
             android:layout_width="wrap_content"
@@ -98,7 +109,8 @@
                 android:layout_height="match_parent"
                 android:background="@color/background_white"
                 android:textSize="@dimen/font_size_middle"
-                android:inputType="text" /><!--因为可能要设置多个邮箱，所以就不限制输入类型为email了-->
+                android:inputType="textMultiLine" />
+            <!--因为可能要设置多个邮箱，所以就不限制输入类型为email了-->
         </LinearLayout>
         <View
             android:layout_width="match_parent"
@@ -128,7 +140,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/background_white"
                 android:textSize="@dimen/font_size_middle"
-                android:inputType="text" />
+                android:inputType="textMultiLine" />
         </LinearLayout>
         <View
             android:layout_width="match_parent"

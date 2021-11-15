@@ -1,6 +1,8 @@
 package com.example.smtpclient;
 
 import static com.example.smtpclient.MainActivity.gAuthorizationCode;
+import static com.example.smtpclient.MainActivity.gDraftsFileName;
+import static com.example.smtpclient.MainActivity.gEmailsFileName;
 import static com.example.smtpclient.MainActivity.gUsername;
 
 import androidx.annotation.RequiresApi;
@@ -40,7 +42,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class EmailActivity extends AppCompatActivity {
-    private Button mBtnCancel,mBtnSend;
+    private Button mBtnCancel,mBtnSend,mBtnSave;
     private TextView mTextSender;
     private EditText mEditReceiver, mEditSubject, mEditContent;
 
@@ -56,22 +58,30 @@ public class EmailActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-
         mBtnCancel = findViewById(R.id.cancel_btn);
         mBtnSend = findViewById(R.id.send_btn);
+        mBtnSave = findViewById(R.id.saveDraft_btn);
         mTextSender = findViewById(R.id.textview_from);
         mEditSubject = findViewById(R.id.edittext_subject);
         mEditReceiver = findViewById(R.id.edittext_to);
         mEditContent = findViewById(R.id.edittext_content);
 
         mTextSender.setText(gUsername);
-        mEditReceiver.setText("653670584@qq.com , 2640182777@qq.com");//暂时设置默认
+        mEditReceiver.setText("653670584@qq.com \n 2640182777@qq.com");//暂时设置默认
 
-        SSLClient sslClient = new SSLClient();
+        SSLClient sslClient = new SSLClient();//临时变量
+
+        //传来的参数，如果没有传的参数，就打印log
+        try {
+            Intent intent = this.getIntent();
+            Bundle bundle = intent.getExtras();
+            SSLClient passClient = (SSLClient) bundle.getSerializable("SSLClient");
+            System.out.println(passClient.getSubject());
+        } catch (NullPointerException e){
+            Log.d("bundle","no data from draftbox...");
+        }
 
 
-
-        //设置“取消”，“发送”按钮的行为
         mBtnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,7 +89,32 @@ public class EmailActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        mBtnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String from = mTextSender.getText().toString();
+                String receivers = mEditReceiver.getText().toString();
+                String subject = mEditSubject.getText().toString();
+                String content = mEditContent.getText().toString();
 
+                sslClient.setUsername(gUsername);
+                sslClient.setAuthorizationCode(gAuthorizationCode);
+                sslClient.setToAddressList(formatAddrList(receivers));
+                sslClient.setDate(getDateString());
+                sslClient.setFromAddress(from);
+                //注意，没有设置toAddress的逻辑
+                sslClient.setSubject(subject);
+                sslClient.setContent(content);
+
+                saveEmail(sslClient,gDraftsFileName);
+
+                Toast toast = Toast.makeText(EmailActivity.this,"存草稿成功",Toast.LENGTH_SHORT);
+                toast.show();
+
+                mEditSubject.setText("");
+                mEditContent.setText("");
+            }
+        });
         mBtnSend.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
@@ -107,7 +142,7 @@ public class EmailActivity extends AppCompatActivity {
                     try {
                         if(sslClient.runClient()){
                             toast.setText("发送成功！");
-                            saveEmail(sslClient,"emailData.json");
+                            saveEmail(sslClient, gEmailsFileName);
                         }
                         else {
                             toast.setText("发送失败");
@@ -155,19 +190,20 @@ public class EmailActivity extends AppCompatActivity {
         //targetFileName = "emailData.json";
         String QQaccount = gUsername.substring(0,gUsername.indexOf('@'));//获取QQ号
         String dirPath = getFilesDir() + "/"+ QQaccount;
-        File emailJsonFile = new File(dirPath,"/" + targetFileName);
+        String tagName = targetFileName.substring(0,targetFileName.indexOf('.'));//截取文件名作为标签索引
+        File jsonFile = new File(dirPath,"/" + targetFileName);
         char[] buffer = new char[1024];
         StringBuilder allData = new StringBuilder();
         InputStreamReader input;
         int len;
         try {
-            input = new InputStreamReader(new FileInputStream(emailJsonFile), StandardCharsets.UTF_8);
+            input = new InputStreamReader(new FileInputStream(jsonFile), StandardCharsets.UTF_8);
             while((len =input.read(buffer))>0){
                 allData.append(buffer,0,len);
             }
             JSONObject jsonObject = new JSONObject(allData.substring(allData.indexOf("{")));   //过滤读出的utf-8前三个标签字节,从{开始读取
             Log.d("jsonObject",jsonObject.toString());
-            JSONArray jsonArray = jsonObject.getJSONArray("emails");
+            JSONArray jsonArray = jsonObject.getJSONArray(tagName);
             JSONObject addObject = new JSONObject();
             //添加相关信息
             addObject.put("date",client.getDate());
@@ -180,7 +216,7 @@ public class EmailActivity extends AppCompatActivity {
             Log.d("newObject",addObject.toString());
             jsonArray.put(addObject);
             //Log.d("current",jsonObject.toString());//OK
-            OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(emailJsonFile), StandardCharsets.UTF_8);
+            OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(jsonFile), StandardCharsets.UTF_8);
             osw.write(jsonObject.toString());
             osw.flush();//清空缓冲区，强制输出数据
             osw.close();//关闭输出流

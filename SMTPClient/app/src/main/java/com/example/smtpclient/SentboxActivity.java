@@ -1,5 +1,7 @@
 package com.example.smtpclient;
 
+import static com.example.smtpclient.MainActivity.gEmailsFileName;
+import static com.example.smtpclient.MainActivity.gFilesPath;
 import static com.example.smtpclient.MainActivity.gUsername;
 
 import androidx.annotation.NonNull;
@@ -39,25 +41,27 @@ public class SentboxActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sentbox);
 
-        setSSLClients();//先设置所有SSLClient列表，
+        mSSLClients = getSSLClients(gEmailsFileName);//先设置所有SSLClient列表，
         mRecyclerSentbox = findViewById(R.id.recycler_sentbox);
         mRecyclerSentbox.setLayoutManager(new LinearLayoutManager(SentboxActivity.this));
         //调用的setLayoutManager属性是布局管理器，传的参数是布局管理器实例，这里是线性布局管理器.
         mRecyclerSentbox.setAdapter(new SentboxLinearAdapter(SentboxActivity.this, mSSLClients));
 
+
     }
-    private void setSSLClients(){
+    public ArrayList<SSLClient> getSSLClients(String targetFileName){
         //得到所有的邮件的全部信息，到myClients数组中
+        ArrayList<SSLClient> tempSSLClients = new ArrayList<>();
         String QQaccount = gUsername.substring(0,gUsername.indexOf('@'));//获取QQ号
-        String dirPath = getFilesDir() + "/"+ QQaccount;
-        String emailDataName = "emailData.json";
-        File emailJsonFile = new File(dirPath,"/" + emailDataName);
+        String dirPath = gFilesPath + "/"+ QQaccount;
+        File jsonFile = new File(dirPath,"/" + targetFileName);
+        String tagName = targetFileName.substring(0,targetFileName.indexOf("."));
         char[] buffer = new char[1024];
         StringBuilder allData = new StringBuilder();
         InputStreamReader input = null;
         int len;
         try {
-            input = new InputStreamReader(new FileInputStream(emailJsonFile), StandardCharsets.UTF_8);
+            input = new InputStreamReader(new FileInputStream(jsonFile), StandardCharsets.UTF_8);
             while((len =input.read(buffer))>0){
                 allData.append(buffer,0,len);
             }
@@ -66,28 +70,23 @@ public class SentboxActivity extends AppCompatActivity {
 
             JSONObject jsonObject = new JSONObject(allData.substring(allData.indexOf("{")));   //过滤读出的utf-8前三个标签字节,从{开始读取
             Log.d("jsonObject",jsonObject.toString());
-            JSONArray jsonArray = jsonObject.getJSONArray("emails");
+            JSONArray jsonArray = jsonObject.getJSONArray(tagName);
             for (int i = 0 ;i<jsonArray.length();i++){
                 SSLClient tempClient = new SSLClient();
                 JSONObject tempJsonObject;
                 JSONArray tempJsonArray;
                 ArrayList<String> tempToList = new ArrayList<>();
 
-                String toString;//收件人的字符串
+                String toString = "";//收件人的字符串
 
                 tempJsonObject = jsonArray.getJSONObject(i);
                 tempJsonArray = tempJsonObject.getJSONArray("to");//注意，收件人是一个列表
-
-                if (tempJsonObject.length()>1){
-                    for (int j = 0;j<tempJsonArray.length();j++){
-                        tempToList.add(tempJsonArray.getString(j));
-                    }
-                    toString = tempJsonArray.getString(0)+"...";
-                }else {
-                    tempToList.add(tempJsonArray.getString(0));
-                    toString = tempJsonArray.getString(0);
+                for (int j = 0;j<tempJsonArray.length();j++){
+                    tempToList.add(tempJsonArray.getString(j));
+                    toString = tempJsonArray.getString(j)+";";
                 }
-                System.out.println(toString);
+
+                //System.out.println(toString);
 
                 //System.out.println(tempToList.toString());
                 tempClient.setDate(tempJsonObject.getString("date"));
@@ -97,12 +96,11 @@ public class SentboxActivity extends AppCompatActivity {
                 tempClient.setSubject(tempJsonObject.getString("subject"));
                 tempClient.setContent(tempJsonObject.getString("content"));
 
-                mSSLClients.add(tempClient);
+                tempSSLClients.add(tempClient);
             }
-
         } catch (IOException | JSONException e ) {
-            //Log.d("setSSLClients","error");
-            e.printStackTrace();
+            Log.d("setSSLClients","error");
+            //e.printStackTrace();
         } finally {
             try {
                 if (input != null) {
@@ -112,7 +110,9 @@ public class SentboxActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+        return tempSSLClients;
     }
+
 
     //这里对适配器再继承，主要是重写每个条目的监听器逻辑
     class SentboxLinearAdapter extends BoxLinearAdapter {

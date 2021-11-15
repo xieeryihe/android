@@ -26,9 +26,13 @@ public class MainActivity extends AppCompatActivity {
     public static String gAuthorizationCode;
     public static String gUsersJsonFileName;
     public static File gUsersJsonFile;
-    public static SSLClient gSSLClient;
+    public static String gEmailsFileName;//任何用户的右键数据都存在其对应文件夹的该文件中
+    public static String gDraftsFileName;//草稿箱同上
+    public static String gFilesPath;//files文件夹的路径名字
+
     public static String default_username;
     public static String default_authorizationCode;
+
 
     private void init(){
         //成员变量不能放到构造函数里，因为getSharedPreferences必须等到onCreate方法执行完之后才行
@@ -38,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
         gUsersJsonFile = new File(getFilesDir().getAbsolutePath(),"/"+gUsersJsonFileName);
         gUsername = gShared.getString("username","");//最开始是获取不到的，用空字符串即可
         gAuthorizationCode = gShared.getString("authorizationCode","");
+        gEmailsFileName = "emails.json";
+        gDraftsFileName = "drafts.json";
+        gFilesPath = getFilesDir().toString();
         default_username = "2640182777@qq.com";
         default_authorizationCode = "fjbzxoivfccxdjbc";
 
@@ -55,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
         createUserJsonFile();
         mLinear = findViewById(R.id.background);
 
-        //初始化一些信息
 
 
         mLinear.setOnClickListener(new View.OnClickListener() {
@@ -97,4 +103,6 @@ public class MainActivity extends AppCompatActivity {
         osw.close();
         Log.d("init json","success");
     }
+
+
 }
