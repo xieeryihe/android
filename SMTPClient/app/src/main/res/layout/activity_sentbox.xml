@@ -11,7 +11,7 @@
         android:textSize="30sp"
         android:text="已发送"
         android:textColor="@color/black"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="10dp"
         />
     <View
         android:layout_width="match_parent"

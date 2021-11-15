@@ -76,7 +76,11 @@ public class EmailActivity extends AppCompatActivity {
             Intent intent = this.getIntent();
             Bundle bundle = intent.getExtras();
             SSLClient passClient = (SSLClient) bundle.getSerializable("SSLClient");
-            System.out.println(passClient.getSubject());
+            //System.out.println(passClient.getSubject());
+            mTextSender.setText(passClient.getFromAddress());
+            mEditReceiver.setText(passClient.getToListString());
+            mEditSubject.setText(passClient.getSubject());
+            mEditContent.setText(passClient.getContent());
         } catch (NullPointerException e){
             Log.d("bundle","no data from draftbox...");
         }

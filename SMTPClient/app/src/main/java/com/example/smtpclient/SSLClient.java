@@ -92,6 +92,14 @@ public class SSLClient implements Serializable{//实现序列化接口，以实�
         this.toAddressList = toAddressList;
     }
 
+    //返回收件人列表的字符串
+    public String getToListString(){
+        StringBuilder s = new StringBuilder();
+        for (int i = 0;i<toAddressList.size();i++){
+            s.append(toAddressList.get(i)).append(",\n");
+        }
+        return s.substring(0,s.length()-2);
+    }
 
     //运行代理，发送邮件
     @RequiresApi(api = Build.VERSION_CODES.O)

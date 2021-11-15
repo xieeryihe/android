@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class HomeActivity extends AppCompatActivity {
-    private TextView mTextTitleQQ,mTextWriteEmail, mTextSentbox, mTextDraftbox, mTextLogout;
+    private TextView mTextTitleQQ, mTextWriteEmail, mTextSentbox, mTextDraftbox, mTextContacts, mTextLogout ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,7 @@ public class HomeActivity extends AppCompatActivity {
         mTextWriteEmail = findViewById(R.id.textview_write_email);
         mTextSentbox = findViewById(R.id.textview_sentbox);
         mTextDraftbox = findViewById(R.id.textview_draftbox);
+        mTextContacts = findViewById(R.id.textview_contacts);
         mTextLogout = findViewById(R.id.textview_logout);
 
         mTextTitleQQ.setText(gUsername);
@@ -47,6 +48,14 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(HomeActivity.this, DraftboxActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        mTextContacts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast = Toast.makeText(HomeActivity.this,"待开发哦~",Toast.LENGTH_SHORT);
+                toast.show();
             }
         });
 
