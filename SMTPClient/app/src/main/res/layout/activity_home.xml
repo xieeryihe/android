@@ -119,5 +119,36 @@
         android:layout_height="1dp"
         android:background="@color/grey"/>
 
+    <TextView
+        android:id="@+id/textview_help"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height_xxhigh"
+        android:layout_marginStart="10dp"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/font_size_middle_big"
+        android:text="帮助中心"
+        android:textColor="@color/black"
+        android:drawablePadding="20dp"
+        android:drawableStart="@drawable/help" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey"/>
+
+    <TextView
+        android:id="@+id/textview_document"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height_xxhigh"
+        android:layout_marginStart="10dp"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/font_size_middle_big"
+        android:text="开发者文档"
+        android:textColor="@color/black"
+        android:drawablePadding="20dp"
+        android:drawableStart="@drawable/document" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey"/>
 
 </LinearLayout>

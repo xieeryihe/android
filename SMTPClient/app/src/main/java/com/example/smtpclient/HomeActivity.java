@@ -12,7 +12,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class HomeActivity extends AppCompatActivity {
-    private TextView mTextTitleQQ, mTextWriteEmail, mTextSentbox, mTextDraftbox, mTextContacts, mTextLogout ;
+    private TextView
+            mTextTitleQQ, mTextWriteEmail, mTextSentbox, mTextDraftbox, mTextContacts, mTextLogout,
+            mTextHelp, mTextDocument;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,8 @@ public class HomeActivity extends AppCompatActivity {
         mTextDraftbox = findViewById(R.id.textview_draftbox);
         mTextContacts = findViewById(R.id.textview_contacts);
         mTextLogout = findViewById(R.id.textview_logout);
+        mTextHelp = findViewById(R.id.textview_help);
+        mTextDocument = findViewById(R.id.textview_document);
 
         mTextTitleQQ.setText(gUsername);
         mTextWriteEmail.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +73,22 @@ public class HomeActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(HomeActivity.this,"已登出...",Toast.LENGTH_SHORT);
                 toast.show();
                 Intent intent = new Intent(HomeActivity.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        
+        mTextHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this,HelpActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        mTextDocument.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this,DocumentActivity.class);
                 startActivity(intent);
             }
         });

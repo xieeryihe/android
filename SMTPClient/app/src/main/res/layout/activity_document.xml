@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="10dp">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="@dimen/font_size_title"
+        android:text="说明"
+        android:textColor="@color/black"
+        android:layout_marginBottom="10dp"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/grey"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/font_size_big"
+        android:text="其实也没什么好说的......\n\n\n我爱你们！"
+        android:textColor="@color/black"
+        android:lineSpacingMultiplier="1.2"
+        android:layout_marginBottom="10dp"
+        />
+
+</LinearLayout>
