@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     public static File gUsersJsonFile;
     public static String gEmailsFileName;//任何用户的右键数据都存在其对应文件夹的该文件中
     public static String gDraftsFileName;//草稿箱同上
+    public static String gContactsFileName;//所有联系人
     public static String gFilesPath;//files文件夹的路径名字
 
     public static String default_username;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         gAuthorizationCode = gShared.getString("authorizationCode","");
         gEmailsFileName = "emails.json";
         gDraftsFileName = "drafts.json";
+        gContactsFileName = "contacts.json";
         gFilesPath = getFilesDir().toString();
         default_username = "2640182777@qq.com";
         default_authorizationCode = "fjbzxoivfccxdjbc";

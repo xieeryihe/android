@@ -58,8 +58,8 @@ public class HomeActivity extends AppCompatActivity {
         mTextContacts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast toast = Toast.makeText(HomeActivity.this,"待开发哦~",Toast.LENGTH_SHORT);
-                toast.show();
+                Intent intent = new Intent(HomeActivity.this, ContactsActivity.class);
+                startActivity(intent);
             }
         });
 

@@ -12,14 +12,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name=".webView.GetAuthActivity"
+            android:name=".NewContactActivity"
             android:exported="false" />
+        <activity
+            android:name=".ContactsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".webView.GetAuthActivity"
+            android:exported="false"
+            android:launchMode="singleTask" />
         <activity
             android:name=".DocumentActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:launchMode="singleTask" />
         <activity
             android:name=".HelpActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:launchMode="singleTask" />
         <activity
             android:name=".ViewEmailActivity"
             android:exported="false"

@@ -32,7 +32,7 @@ public class DraftboxActivity extends AppCompatActivity {
 
         SentboxActivity sentboxActivity = new SentboxActivity();//还必须得实例化一个类
         mSSLClients = sentboxActivity.getSSLClients(gDraftsFileName);//先设置所有SSLClient列表，
-        System.out.println(mSSLClients.get(0).getSubject());
+        //System.out.println(mSSLClients.get(0).getSubject());
 
         mRecyclerDraftbox = findViewById(R.id.recycler_sentbox);
         mRecyclerDraftbox.setLayoutManager(new LinearLayoutManager(DraftboxActivity.this));

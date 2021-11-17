@@ -7,6 +7,7 @@
         <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/drawable/bg_edit_text.xml" value="0.159375" />
         <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/drawable/bg_login_btn.xml" value="0.159375" />
         <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/drawable/ic_launcher_background.xml" value="0.159375" />
+        <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/layout/activity_contacts.xml" value="0.2" />
         <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/layout/activity_document.xml" value="0.536" />
         <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/layout/activity_draftbox.xml" value="0.1" />
         <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/layout/activity_email.xml" value="0.5261538461538462" />
@@ -16,10 +17,12 @@
         <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/layout/activity_inbox.xml" value="0.4" />
         <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/layout/activity_main.xml" value="0.15670289855072464" />
-        <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/layout/activity_sentbox.xml" value="0.536" />
+        <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/layout/activity_new_contact.xml" value="0.176" />
+        <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/layout/activity_sentbox.xml" value="0.176" />
         <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/layout/activity_view_email.xml" value="0.1" />
         <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/layout/ic_launcher_background.xml" value="0.14322916666666666" />
-        <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/layout/layout_recycle_element.xml" value="0.2" />
+        <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/layout/layout_recycle_contact.xml" value="0.1" />
+        <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/layout/layout_recycle_element.xml" value="0.1" />
         <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/layout/layout_webview_email.xml" value="0.27447916666666666" />
         <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/layout/list_element.xml" value="0.19635416666666666" />
         <entry key="..\:/Java/android_program/SMTPClient/app/src/main/res/layout/recycle_element_layout.xml" value="0.1421875" />
@@ -35,7 +38,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.4" />
+        <option name="scale" value="0.176" />
       </ProjectState>
     </option>
   </component>

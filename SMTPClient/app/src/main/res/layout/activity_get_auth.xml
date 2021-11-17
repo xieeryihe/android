@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <WebView
-        android:id="@+id/webview_email"
+        android:id="@+id/webview_get_auth"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

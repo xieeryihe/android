@@ -43,25 +43,6 @@ public class BoxLinearAdapter extends RecyclerView.Adapter<BoxLinearAdapter.BoxL
         holder.content.setText(sslClients.get(position).getContent());
         holder.date.setText(sslClients.get(position).getDate());
         //将单个元素的点击事件延迟到具体的实现类中
-
-        /*
-        holder.itemView.setOnClickListener(new View.OnClickListener() {//给itemView设置点击事件
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(mContext, "click..."+position, Toast.LENGTH_SHORT).show();
-                //上面那行是在这个适配器中实现点击事件
-            }
-        });
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {//长按触发事件
-            @Override
-            public boolean onLongClick(View view) {
-                Toast.makeText(mContext,"Long touch"+position,Toast.LENGTH_SHORT).show();
-                return true;
-                //返回true，表示已经完整地处理了这个事件，并不希望其他的回调方法再次进行处理；
-                //返回false，表示并没有完全处理完该事件，更希望其他方法继续对其进行处理。
-            }
-        });
-         */
     }
 
 

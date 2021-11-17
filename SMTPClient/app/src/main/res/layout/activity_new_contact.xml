@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp">
+    <EditText
+        android:id="@+id/edittext_contact_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:hint="昵称"
+        android:background="@drawable/bg_edit_text"
+        android:paddingLeft="10dp"
+        android:drawableLeft="@drawable/username"
+        android:drawablePadding="5dp"
+        android:layout_marginTop="20dp"/>
+    <!--hint是提示内容，paddingLeft是图标左侧距离EditText的边距-->
+
+    <EditText
+        android:id="@+id/edittext_contact_username"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:hint="邮箱："
+        android:inputType="textPassword"
+        android:background="@drawable/bg_edit_text"
+        android:paddingLeft="10dp"
+        android:drawableLeft="@drawable/username"
+        android:drawablePadding="5dp"
+        android:layout_marginTop="20dp"/>
+    <!--inputType设置为文本密码类型-->
+    <Button
+        android:id="@+id/button_create_contact"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="新增"
+        android:textSize="20sp"
+        android:textColor="#ffffff"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/bg_login_btn"/>
+
+
+</LinearLayout>

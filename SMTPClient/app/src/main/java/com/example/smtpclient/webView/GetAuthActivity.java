@@ -12,31 +12,31 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.example.smtpclient.HelpActivity;
 import com.example.smtpclient.R;
 
 public class GetAuthActivity extends AppCompatActivity {
-    private WebView mWvMain;
+    private WebView mWebviewGetAuth;
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_auth);
-        mWvMain = findViewById(R.id.webview_email);
-        String url = "https://blog.csdn.net";
+        mWebviewGetAuth = findViewById(R.id.webview_get_auth);
+        //String url = "https://blog.csdn.net";
+        String url = "https://jingyan.baidu.com/article/ac6a9a5eb439f36b653eacc0.html";
         //加载网络URL
         //注意：直接访问网页是不行的，手机上会显示“网页无法打开”，就像没联网一样。
         //这是因为手机上网页默认是不支持js的，要通过设置使之支持js，否则有些网页加载不了，如下代码
-        WebSettings webSettings = mWvMain.getSettings();
+        WebSettings webSettings = mWebviewGetAuth.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);//开启DOM，可以在加载出的百度里点击百度的超链接跳转，不设置这个就会点击超链接，然后跳转失败
         //测试后发现即使不开启DOM也可以点击
         webSettings.setAppCacheEnabled(true);
 
-        mWvMain.setWebViewClient(new GetAuthActivity.MyWebViewClient());
+        mWebviewGetAuth.setWebViewClient(new GetAuthActivity.MyWebViewClient());
         //mWvMain.requestFocus(View.FOCUS_DOWN | View.FOCUS_UP);//聚焦，没什么用
         //mWvMain.loadUrl("https://m.baidu.com");//访问移动站点都是"m.xxx"，m是mobile，移动的意思
-        mWvMain.loadUrl(url);
+        mWebviewGetAuth.loadUrl(url);
         //mWvMain.addJavascriptInterface();//使用js的另一种方法
         //mWvMain.setWebChromeClient(new MyWbeChromeClient());//使用Chrome，当然，My这个也是需要继承自己写的
 
@@ -70,8 +70,8 @@ public class GetAuthActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
-        if((keyCode==KeyEvent.KEYCODE_BACK)&&mWvMain.canGoBack()){
-            mWvMain.goBack();
+        if((keyCode==KeyEvent.KEYCODE_BACK)&& mWebviewGetAuth.canGoBack()){
+            mWebviewGetAuth.goBack();
             return true;
         }
         return super.onKeyDown(keyCode, event);

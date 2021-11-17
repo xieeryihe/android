@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <!--注意一定是wrap_content，否则就是一个元素占满整个屏幕，结果就是值显示一个元素-->
+    <LinearLayout
+        android:id="@+id/recycler_contact_element"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+            <CheckBox
+                android:id="@+id/checkbox_ele"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="4dp"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginEnd="10dp">
+                    <TextView
+                        android:id="@+id/textview_ele_nickname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lines="1"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_size_middle"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="2" />
+
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/textview_ele_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/font_size_middle_small"
+                    android:lines="1"
+                    android:ellipsize="end"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey"/>
+    </LinearLayout>
+</LinearLayout>

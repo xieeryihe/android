@@ -231,6 +231,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void createEmailJsonFile(String username){
         //创建存储已发送邮件和草稿箱的邮件
+        //创建联系人
         String QQaccount = username.substring(0,username.indexOf('@'));//获取QQ号
         String dirPath = getFilesDir() + "/"+ QQaccount;
         File dir = new File(dirPath);
@@ -238,6 +239,8 @@ public class LoginActivity extends AppCompatActivity {
         String emailsTag = gEmailsFileName.substring(0, gEmailsFileName.indexOf('.'));
         File draftsJsonFile = new File(dirPath,"/"+gDraftsFileName);
         String draftsTag = gDraftsFileName.substring(0,gDraftsFileName.indexOf('.'));
+        File contactsJsonFile = new File(dirPath,"/"+gContactsFileName);
+        String contactsTag = gContactsFileName.substring(0,gContactsFileName.indexOf('.'));
 
         if(!dir.exists()){//如果没有用户目录，就创建，并初始化
             dir.mkdir();
@@ -266,6 +269,23 @@ public class LoginActivity extends AppCompatActivity {
             } catch (IOException | JSONException e) {
                 Log.d("create draft file","failed");
             }
+            //-----------------
+            try {
+                Log.d("create contacts data","create");
+                OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(contactsJsonFile), StandardCharsets.UTF_8);
+                JSONObject jsonObject=new JSONObject();//创建JSONObject对象
+                JSONArray jsonArray = new JSONArray();
+                jsonObject.put(contactsTag,jsonArray);
+                osw.write(jsonObject.toString());
+                osw.flush();
+                osw.close();
+            } catch (IOException | JSONException e) {
+                Log.d("create draft file","failed");
+            }
+
+
+
+
         }else{
             Log.d("dir exists","don't touch anything");
         }
